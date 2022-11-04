@@ -1,0 +1,43 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Archive from "../components/Archive.astro";
+import Single from "../components/Single.astro";
+import { getNodeByURI } from "../lib/api";
+const uri = `/${Astro.params.uri}/`;
+const data = await getNodeByURI(uri);
+const node = data.nodeByUri;
+
+
+function resolveContentTemplate(node){ 
+    let template;
+    switch(node.__typename){
+        case 'Post':
+            template = Single;
+            break; 
+        case 'Page':
+            template = Single;
+            break; 
+        case 'Category':
+            template = Archive;
+            break; 
+        case 'Tag':
+            template = Archive;
+            break; 
+        default: 
+            template = Single;
+    }
+
+    return template;
+}
+
+const Template = resolveContentTemplate(node)
+
+---
+
+<MainLayout 
+ title={ node.title || node.name}
+>
+	<main>
+        <Template node={node}></Template>
+	</main>
+</MainLayout>

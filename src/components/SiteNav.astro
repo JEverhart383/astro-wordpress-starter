@@ -1,0 +1,21 @@
+---
+
+import { navQuery } from "../lib/api";
+const { menu, generalSettings } = await navQuery();
+
+---
+<h2>
+    {generalSettings.title}
+</h2>
+<h4>
+    {generalSettings.description}
+</h4>
+<nav>
+    <ul>
+       {menu.menuItems.nodes.map(menuItem => {
+        return (<li>
+                    <a href={menuItem.uri || '/'}>{menuItem.label}</a>
+                </li>)
+       })}
+    </ul>
+</nav>
