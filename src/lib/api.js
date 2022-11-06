@@ -47,6 +47,12 @@ export async function homePagePostsQuery(){
                         uri
                       }
                     }
+                    featuredImage {
+                      node {
+                        mediaItemUrl
+                        altText
+                      }
+                    }
                   }
                 }
               }

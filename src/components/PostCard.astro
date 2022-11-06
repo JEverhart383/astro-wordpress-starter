@@ -1,0 +1,23 @@
+---
+const { post } = Astro.props;
+---
+<style>
+    article {
+        border: 2px solid darkgray;
+        margin: 1rem 0;
+    }
+    img {
+        max-width: 100%;    
+        max-height: 80px;
+    }
+</style>
+
+<article>
+        <img src={post?.featuredImage?.node?.mediaItemUrl} alt="">
+        <a href={post.uri} ><h3>{post.title}</h3></a>
+        <div>Posted on <time datetime={post.date}>{new Date(post.date).toLocaleDateString()}</time></div>
+        <p set:html={post.excerpt}></p> 
+        { post.categories.nodes.map(category => {
+            return (<a href={category.uri}>{category.name}</a>)
+        })}
+</article>

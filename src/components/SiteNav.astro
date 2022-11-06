@@ -4,6 +4,18 @@ import { navQuery } from "../lib/api";
 const { menu, generalSettings } = await navQuery();
 
 ---
+<style>
+    ul {
+        display: flex;
+        gap: 1rem;
+        padding: 0;
+    }
+    li {
+      list-style-type: none;
+      display: inline-flex;
+      gap: 1rem;
+    }
+</style>
 <h2>
     {generalSettings.title}
 </h2>

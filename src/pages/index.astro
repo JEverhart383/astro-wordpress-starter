@@ -1,4 +1,5 @@
 ---
+import PostCard from "../components/PostCard.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import { homePagePostsQuery } from "../lib/api";
 
@@ -12,13 +13,7 @@ const posts = data.posts.nodes;
 		{
 			posts.map(post => {
 				return (
-					<div>
-						<a href={post.uri} >{post.title}</a>
-						<p set:html={post.excerpt}></p> 
-				        { post.categories.nodes.map(category => {
-							return (<a href={category.uri}>{category.name}</a>)
-						})}
-					</div>
+					<PostCard post={post}></PostCard>
 				)
 			})
 		}
