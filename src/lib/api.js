@@ -81,6 +81,12 @@ export async function getNodeByURI(uri){
                     uri
                     excerpt
                     content
+                    categories {
+                      nodes {
+                        name
+                        uri
+                      }
+                    }
                     featuredImage {
                       node {
                         mediaItemUrl
@@ -104,6 +110,12 @@ export async function getNodeByURI(uri){
                         title
                         excerpt
                         uri
+                        categories {
+                          nodes {
+                            name
+                            uri
+                          }
+                        }
                         featuredImage {
                           node {
                             altText

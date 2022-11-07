@@ -1,0 +1,16 @@
+---
+const { node } = Astro.props;
+--- 
+
+<style>
+    img.featured-image {
+        width:100%;
+        border-radius:  10px;
+    }
+</style>
+ <h1>{node.title}</h1>
+ <p>Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time></p>
+ <img class='featured-image' src={node.featuredImage?.node?.mediaItemUrl} alt="">
+ <article set:html={node.content}>
+
+ </article>

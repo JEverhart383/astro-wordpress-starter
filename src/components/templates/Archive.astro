@@ -1,0 +1,22 @@
+---
+import PostCard from "./PostCard.astro";
+
+const { node } = Astro.props;
+---     
+<style>
+    h1 {
+        background: linear-gradient(260.85deg,#7e5cef 10.29%,#002838 89.71%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+ <h1>{node.name} - Archive</h1>
+
+ {node.posts.nodes.map(post => {
+    return (
+        <PostCard post={post}></PostCard>
+    )
+})}

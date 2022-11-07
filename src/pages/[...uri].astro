@@ -1,7 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Archive from "../components/Archive.astro";
-import Single from "../components/Single.astro";
+import Archive from "../components/templates/Archive.astro";
+import Single from "../components/templates/Single.astro";
 import { getNodeByURI } from "../lib/api";
 const uri = `/${Astro.params.uri}/`;
 const data = await getNodeByURI(uri);
