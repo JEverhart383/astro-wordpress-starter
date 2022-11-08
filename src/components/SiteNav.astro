@@ -5,29 +5,56 @@ const { menu, generalSettings } = await navQuery();
 
 ---
 <style>
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
     ul {
         display: flex;
         gap: 1rem;
         padding: 0;
+        justify-content: flex-end;
+        align-items: center;
+        flex: 1 0 100%;
+        justify-content: center;
     }
     li {
       list-style-type: none;
       display: inline-flex;
       gap: 1rem;
     }
+    .site-name { 
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    @media (min-width: 600px){
+        nav {
+            justify-content: space-between;
+        }
+        ul {
+            flex: 0 1 auto;
+        }
+    }
 </style>
-<h2>
-    <a href="/">{generalSettings.title}</a>
-</h2>
-<h4>
-    {generalSettings.description}
-</h4>
-<nav>
-    <ul>
-       {menu.menuItems.nodes.map(menuItem => {
-        return (<li>
-                    <a href={menuItem.uri || '/'}>{menuItem.label}</a>
-                </li>)
-       })}
-    </ul>
-</nav>
+<header>
+    <nav>
+        <div>
+            <a href="/" class='site-name'>{generalSettings.title}</a>
+        </div>
+        <ul>
+           {menu.menuItems.nodes.map(menuItem => {
+            return (<li>
+                        <a href={menuItem.uri || '/'}>{menuItem.label}</a>
+                    </li>)
+           })}
+        </ul>
+    </nav>
+</header>

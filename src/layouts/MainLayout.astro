@@ -1,5 +1,5 @@
 ---
-import SiteMenu from "../components/SiteMenu.astro"; 
+import SiteNav from "../components/SiteNav.astro"; 
 const { title } = Astro.props;
 // todo: move data fetching to this component from nav
 
@@ -34,7 +34,8 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<main>
-			<SiteMenu></SiteMenu>
+			<SiteNav></SiteNav>
+			<hr>
 			<slot></slot>
 		</main>
 	</body>
