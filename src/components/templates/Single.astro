@@ -28,12 +28,16 @@ const { node } = Astro.props;
     }
 </style>
  <h1>{node.title}</h1>
-
+<!-- Display categories links if node has terms -->
  { node.categories ? node.categories.nodes.map(category => {
     return (<a class='term-link' href={category.uri}>{category.name}</a>)
     }) : null 
  }
- <p class='post-details'>Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time></p>
+<!-- Only show date if node is a Post -->
+ {
+    node.__typename === 'Post' ? <p class='post-details'>Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time></p> :
+    null
+ }
  <img class='featured-image' src={node.featuredImage?.node?.mediaItemUrl} alt="">
  <article set:html={node.content}>
 
