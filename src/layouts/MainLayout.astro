@@ -1,5 +1,6 @@
 ---
 import SiteNav from "../components/SiteNav.astro"; 
+import SiteFooter from "../components/SiteFooter.astro";
 const { title } = Astro.props;
 // todo: move data fetching to this component from nav
 
@@ -38,5 +39,6 @@ const { title } = Astro.props;
 			<hr>
 			<slot></slot>
 		</main>
+		<SiteFooter></SiteFooter>
 	</body>
 </html>
