@@ -2,11 +2,14 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Archive from "../components/templates/Archive.astro";
 import Single from "../components/templates/Single.astro";
-import { getNodeByURI } from "../lib/api";
+import { getNodeByURI, getAllUris } from "../lib/api";
 const uri = `/${Astro.params.uri}/`;
 const data = await getNodeByURI(uri);
 const node = data.nodeByUri;
 
+export async function getStaticPaths(){
+    return await getAllUris();
+}
 
 function resolveContentTemplate(node){ 
     let template;
