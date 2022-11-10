@@ -1,29 +1,11 @@
 ---
 import SiteNav from "../components/SiteNav.astro"; 
 import SiteFooter from "../components/SiteFooter.astro";
+
 const { title } = Astro.props;
 // todo: move data fetching to this component from nav
 
 ---
-<style>
-	* {
-		box-sizing: border-box;
-		--lapis-shade: #0076dc;
-		--heliotrope: #7a1ba6; 
-		--lapis-gradient: linear-gradient(90deg,var(--lapis-shade) 0%,var(--heliotrope) 100%);
-		--bs-font-sans-serif: "Open Sans",sans-serif;
-		--eggplant-gradient: linear-gradient(260.85deg,#7e5cef 10.29%,#002838 89.71%);
-	}
-	body {
-		font-family: 'Open Sans', sans-serif;
-		font-size: 18px;
-	}
-	main {
-		width:100%;
-		max-width: 1024px;
-		margin:auto;
-	}
-</style>
 
 <html lang="en">
 	<head>
@@ -42,3 +24,15 @@ const { title } = Astro.props;
 		<SiteFooter></SiteFooter>
 	</body>
 </html>
+
+<style>
+	body {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 18px;
+	}
+	main {
+		width:100%;
+		max-width: 1024px;
+		margin:auto;
+	}
+</style>

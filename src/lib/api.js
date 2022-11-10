@@ -69,7 +69,7 @@ export async function getNodeByURI(uri){
         method: 'post', 
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
-            query: `query MyQuery3($uri: String!) {
+            query: `query GetNodeByURI($uri: String!) {
                 nodeByUri(uri: $uri) {
                   __typename
                   isContentNode
@@ -174,7 +174,7 @@ export async function getAllUris(){
         uri: trimmedURI
       }}
     })
-    console.log(uris)
+
   return uris;
 
 }
