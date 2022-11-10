@@ -1,9 +1,24 @@
 ---
 
-import { navQuery } from "../lib/api";
-const { menu, generalSettings } = await navQuery();
+const {menu, generalSettings} = Astro.props;
 
 ---
+
+<header>
+    <nav>
+        <div>
+            <a href="/" class='site-name'>{generalSettings.title}</a>
+        </div>
+        <ul>
+           {menu.menuItems.nodes.map(menuItem => {
+            return (<li>
+                        <a href={menuItem.uri || '/'}>{menuItem.label}</a>
+                    </li>)
+           })}
+        </ul>
+    </nav>
+</header>
+
 <style>
     nav {
         display: flex;
@@ -44,17 +59,3 @@ const { menu, generalSettings } = await navQuery();
         }
     }
 </style>
-<header>
-    <nav>
-        <div>
-            <a href="/" class='site-name'>{generalSettings.title}</a>
-        </div>
-        <ul>
-           {menu.menuItems.nodes.map(menuItem => {
-            return (<li>
-                        <a href={menuItem.uri || '/'}>{menuItem.label}</a>
-                    </li>)
-           })}
-        </ul>
-    </nav>
-</header>

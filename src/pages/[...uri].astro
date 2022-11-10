@@ -39,6 +39,7 @@ const Template = resolveContentTemplate(node)
 
 <MainLayout 
  title={ node.title || node.name}
+ description={ node.excerpt }
 >
 	<main>
         <Template node={node}></Template>
