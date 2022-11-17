@@ -1,6 +1,23 @@
 ---
 const { post } = Astro.props;
 ---
+
+<article>
+    <a class='post-link' href={post.uri} aria-label={post.title}>
+        <h3>{post.title}</h3>    
+        <section>
+            <img src={post?.featuredImage?.node?.mediaItemUrl} alt="">
+            <div>
+                <p set:html={post.excerpt}></p> 
+                { post.categories.nodes.map(category => {
+                    return (<a class='term-link' href={category.uri}>{category.name}</a>)
+                })}
+                <span><time datetime={post.date}>{new Date(post.date).toLocaleDateString()}</time></span>
+            </div>
+        </section>
+    </a>
+</article>
+
 <style>
     article {
         border: 1px solid lightgray;
@@ -47,19 +64,3 @@ const { post } = Astro.props;
     }
     
 </style>
-
-<article>
-    <a class='post-link' href={post.uri} aria-label={post.title}>
-        <h3>{post.title}</h3>    
-        <section>
-            <img src={post?.featuredImage?.node?.mediaItemUrl} alt="">
-            <div>
-                <p set:html={post.excerpt}></p> 
-                { post.categories.nodes.map(category => {
-                    return (<a class='term-link' href={category.uri}>{category.name}</a>)
-                })}
-                <span><time datetime={post.date}>{new Date(post.date).toLocaleDateString()}</time></span>
-            </div>
-        </section>
-    </a>
-</article>
