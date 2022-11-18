@@ -4,7 +4,8 @@ export async function navQuery(){
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
             query: `{
-                menu(id: "MainMenu", idType: NAME) {
+                menus(where: {location: PRIMARY}) {
+                  nodes {
                     name
                     menuItems {
                         nodes {
@@ -14,6 +15,7 @@ export async function navQuery(){
                             label
                         }
                     }
+                  }
                 }
                 generalSettings {
                     title
@@ -25,6 +27,7 @@ export async function navQuery(){
         })
     });
     const{ data } = await siteNavQueryRes.json();
+    console.log(data)
     return data;
 }
 

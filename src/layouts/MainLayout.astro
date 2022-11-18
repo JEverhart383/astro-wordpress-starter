@@ -2,7 +2,8 @@
 import SiteNav from "../components/SiteNav.astro"; 
 import SiteFooter from "../components/SiteFooter.astro";
 import { navQuery } from "../lib/api";
-const { menu, generalSettings } = await navQuery();
+const { menus, generalSettings } = await navQuery();
+const primaryMenu = menus.nodes[0];
 
 const { title, description } = Astro.props;
 
@@ -19,7 +20,7 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 		<main>
-			<SiteNav menu={menu} generalSettings={generalSettings}></SiteNav>
+			<SiteNav menu={primaryMenu} generalSettings={generalSettings}></SiteNav>
 			<hr>
 			<slot></slot>
 		</main>
