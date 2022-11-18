@@ -1,7 +1,27 @@
 ---
 const { node } = Astro.props;
 --- 
-<style is:global>
+
+ <h1>{node.title}</h1>
+<!-- Display categories links if node has terms -->
+ { node.categories ?
+    node.categories.nodes.map(category => (<a class='term-link' href={category.uri}>{category.name}</a>)) :     
+    null 
+ }
+<!-- Only show date if node is a Post -->
+ {
+    node.__typename === 'Post' ? 
+    (<p class='post-details'>
+        Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time>
+    </p>):
+    null
+ }
+ <img class='featured-image' src={node.featuredImage?.node?.mediaItemUrl} alt="">
+ 
+ <article set:html={node.content}>
+ </article>
+
+ <style is:global>
     .wp-block-image img {
             width: 100%;
             height: auto;  
@@ -27,21 +47,3 @@ const { node } = Astro.props;
         font-weight: bold;
     }
 </style>
- <h1>{node.title}</h1>
-<!-- Display categories links if node has terms -->
- { node.categories ?
-    node.categories.nodes.map(category => (<a class='term-link' href={category.uri}>{category.name}</a>)) :     
-    null 
- }
-<!-- Only show date if node is a Post -->
- {
-    node.__typename === 'Post' ? 
-    (<p class='post-details'>
-        Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time>
-    </p>):
-    null
- }
- <img class='featured-image' src={node.featuredImage?.node?.mediaItemUrl} alt="">
- 
- <article set:html={node.content}>
- </article>
