@@ -27,7 +27,6 @@ export async function navQuery(){
         })
     });
     const{ data } = await siteNavQueryRes.json();
-    console.log(data)
     return data;
 }
 
