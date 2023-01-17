@@ -169,6 +169,7 @@ export async function getAllUris(){
     .reduce(function(acc, currentValue){
       return acc.concat(currentValue.nodes)
     }, [])
+    .filter(node => node.uri !== null)
     .map(node => {
       let trimmedURI = node.uri.substring(1);
       trimmedURI = trimmedURI.substring(0, trimmedURI.length - 1)
