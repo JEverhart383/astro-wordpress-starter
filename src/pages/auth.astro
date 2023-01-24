@@ -4,5 +4,5 @@ import AuthForm from "../components/AuthForm.vue";
 ---
 
 <MainLayout title='Auth Page'>
-    <AuthForm url={import.meta.env.WORDPRESS_API_URL} client:load></AuthForm>
+    <AuthForm url={import.meta.env.WORDPRESS_API_URL} client:only></AuthForm>
 </MainLayout>

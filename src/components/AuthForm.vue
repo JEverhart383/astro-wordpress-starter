@@ -12,17 +12,29 @@
             <li v-for="post in posts" :key="post.title">{{post.title}}</li>
         </ul>
     </section>
+    <section v-if="jwt">
+        <h3>Create Post</h3>
+        <QuillEditor theme="snow" v-model:content="content" content-type="html"/>
+        <br>
+        <button type="button" @click="createDraftPost">Create New Post</button>
+    </section>
 </template>
 
 <script>
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 export default {
     data() {
         return {
             username: '',
             password: '',
             jwt: '',
-            posts: []
+            posts: [],
+            content: ''
         }
+    },
+    components: {
+        QuillEditor
     },
     props: {
         url: {
@@ -48,6 +60,7 @@ export default {
                             authToken
                             user {
                                 id
+                                databaseId
                                 name
                             }
                         }
@@ -84,19 +97,36 @@ export default {
                 console.log(authData);
             }
             
+        },
+        async createDraftPost(){
+            const authResponse = await fetch(this.url, {
+                    method: 'post', 
+                    headers: {
+                        'Content-Type':'application/json',
+                        'Authorization': `Bearer ${this.jwt}`
+                    },
+                    body: JSON.stringify({
+                        query: `
+                        mutation MyMutation {
+                            createPost(input: {content: "Test", title: "Test", status: DRAFT, authorId: "1"}) {
+                                post {
+                                title
+                                content
+                                }
+                            }
+                        }
+                        `
+                    })
+                });
         }
+
+        
+    },
+    updated () {
+        console.log(this.content)
     }
 }
 
-
-
-
-
-
-
-
-
-//0JW1s)z$OYgVs7TKr)TgTH4U
 </script>
 
 <style>
