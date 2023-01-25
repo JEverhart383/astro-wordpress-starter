@@ -1,0 +1,16 @@
+---
+
+import MainLayout from "../layouts/MainLayout.astro";
+import BlockEditorContainer from '../components/BlockEditorContainer';
+import '@automattic/isolated-block-editor/build-browser/core.css';
+
+
+
+---
+
+<MainLayout title='Editor'>
+	<main>
+        <BlockEditorContainer client:only='react'></BlockEditorContainer>
+
+	</main>
+</MainLayout>
