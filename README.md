@@ -36,6 +36,13 @@ For example, if you want the path `/category/food-trucks` to be handled by a dif
 
 By default, the menu assigned to the `Primary` menu location will be used for your header menu.
 
+### Rendering and Serving
+
+This project is using the new [hybrid rendering model](https://docs.astro.build/en/guides/server-side-rendering/#hybrid-rendering) available in Astro v2. To pre-render any routes you add, make sure to include the following export in your Astro component's frontmatter:
+
+`export const prerender = true;`
+
+All of the current routes are being pre-rendered to HTML and served using the [standalone node adapter](https://docs.astro.build/en/guides/integrations-guide/node/). This offers users the flexibility to create additional SSR functionality if desired while still optimizing content pages using pre-rendered HTML.
 
 ## Headless WordPress Hosting with Atlas
 
