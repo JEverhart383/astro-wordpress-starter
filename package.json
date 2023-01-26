@@ -5,13 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "start": "http-server ./dist",
+    "start": "node ./dist/server/entry.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.6.0",
-    "http-server": "^14.1.1"
+    "@astrojs/node": "^5.0.0",
+    "astro": "^2.0.1"
   }
 }
