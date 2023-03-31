@@ -5,57 +5,95 @@ const {menu, generalSettings} = Astro.props;
 ---
 
 <header>
+    <div><a href="/" class='site-name'>{generalSettings.title}</a></div>
+    <div class="hamburger">&#9776;</div>
     <nav>
-        <div>
-            <a href="/" class='site-name'>{generalSettings.title}</a>
-        </div>
         <ul>
-           {menu.menuItems.nodes.map(menuItem => {
+        {menu.menuItems.nodes.map(menuItem => {
             return (<li>
                         <a href={menuItem.uri || '/'}>{menuItem.label}</a>
                     </li>)
-           })}
+            })}
         </ul>
     </nav>
 </header>
 
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+
+    hamburger.addEventListener('click', toggleNav);
+
+    function toggleNav() {
+        nav.classList.toggle('show-nav');
+        console.log('running')
+    }
+</script>
+
 <style>
+
+    header {
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* hamburger icon styling */
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      color: #000;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    /* nav menu styling */
     nav {
-        display: flex;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    nav ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    nav li {
+      margin-left: 20px;
+    }
+    nav a {
+      text-decoration: none;
+    }
+    /* media query for mobile */
+    @media (max-width: 767px) {
+      /* hamburger icon shows up */
+      .hamburger {
+        display: block;
+      }
+      /* nav is hidden by default */
+      nav {
+        display: none;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+      }
+      /* nav links are stacked and centered */
+      nav ul {
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-
-    }
-
-    h2 {
-        font-size: 1rem;
-    }
-    ul {
+      }
+      /* nav link styling */
+      nav li {
+        margin: 10px 0;
+      }
+      /* nav links show up when hamburger icon is clicked */
+      nav.show-nav {
         display: flex;
-        gap: 1rem;
-        padding: 0;
-        justify-content: flex-end;
-        align-items: center;
-        flex: 1 0 100%;
-        justify-content: center;
-    }
-    li {
-      list-style-type: none;
-      display: inline-flex;
-      gap: 1rem;
-    }
-    .site-name { 
-        font-size: 1.25rem;
-        font-weight: bold;
-        text-decoration: none;
-    }
-
-    @media (min-width: 600px){
-        nav {
-            justify-content: space-between;
-        }
-        ul {
-            flex: 0 1 auto;
-        }
+      }
     }
 </style>
