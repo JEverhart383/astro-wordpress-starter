@@ -51,9 +51,13 @@ export async function homePagePostsQuery(){
                     }
                     featuredImage {
                       node {
-                        mediaItemUrl
-                        altText
                         srcSet
+                        sourceUrl
+                        altText
+                        mediaDetails {
+                          height
+                          width
+                        }
                       }
                     }
                   }
@@ -92,9 +96,13 @@ export async function getNodeByURI(uri){
                     }
                     featuredImage {
                       node {
-                        altText
-                        mediaItemUrl
                         srcSet
+                        sourceUrl
+                        altText
+                        mediaDetails {
+                          height
+                          width
+                        }
                       }
                     }
                   }
@@ -122,9 +130,13 @@ export async function getNodeByURI(uri){
                         }
                         featuredImage {
                           node {
-                            altText
-                            mediaItemUrl
                             srcSet
+                            sourceUrl
+                            altText
+                            mediaDetails {
+                              height
+                              width
+                            }
                           }
                         }
                       }

@@ -1,6 +1,5 @@
 ---
 const { post } = Astro.props;
-console.log(post)
 ---
 
 <article>
@@ -12,6 +11,8 @@ console.log(post)
                 alt={post?.featuredImage?.node?.altText}
                 srcset={post?.featuredImage?.node?.srcSet}
                 loading='lazy'
+                width={post?.featuredImage?.node?.mediaDetails?.width}
+                height={post?.featuredImage?.node?.mediaDetails?.height}
             >
             <div>
                 <p set:html={post.excerpt}></p> 
@@ -38,6 +39,8 @@ console.log(post)
     }
     img {
         width: 100%;
+        height: auto;
+        max-width: 100%;
         border-radius:  10px;
     }
     section { 

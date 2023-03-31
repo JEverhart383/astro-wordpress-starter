@@ -21,6 +21,8 @@ const { node } = Astro.props;
     srcset={node.featuredImage?.node?.srcSet} 
     alt={node.featuredImage?.node?.altText}
     loading='lazy'
+    width={node.featuredImage?.node?.mediaDetails?.width}
+    height={node.featuredImage?.node?.mediaDetails?.height}
  >
  
  <article set:html={node.content}>
