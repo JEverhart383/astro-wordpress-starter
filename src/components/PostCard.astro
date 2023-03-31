@@ -1,12 +1,18 @@
 ---
 const { post } = Astro.props;
+console.log(post)
 ---
 
 <article>
     <a class='post-link' href={post.uri} aria-label={post.title}>
         <h3>{post.title}</h3>    
         <section>
-            <img src={post?.featuredImage?.node?.mediaItemUrl} alt="">
+            <img 
+                src={post?.featuredImage?.node?.mediaItemUrl} 
+                alt={post?.featuredImage?.node?.altText}
+                srcset={post?.featuredImage?.node?.srcSet}
+                loading='lazy'
+            >
             <div>
                 <p set:html={post.excerpt}></p> 
                 { post.categories.nodes.map(category => {

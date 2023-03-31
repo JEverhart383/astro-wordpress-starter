@@ -53,6 +53,7 @@ export async function homePagePostsQuery(){
                       node {
                         mediaItemUrl
                         altText
+                        srcSet
                       }
                     }
                   }
@@ -91,8 +92,9 @@ export async function getNodeByURI(uri){
                     }
                     featuredImage {
                       node {
-                        mediaItemUrl
                         altText
+                        mediaItemUrl
+                        srcSet
                       }
                     }
                   }
@@ -122,6 +124,7 @@ export async function getNodeByURI(uri){
                           node {
                             altText
                             mediaItemUrl
+                            srcSet
                           }
                         }
                       }

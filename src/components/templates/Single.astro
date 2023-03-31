@@ -16,7 +16,11 @@ const { node } = Astro.props;
     </p>):
     null
  }
- <img class='featured-image' src={node.featuredImage?.node?.mediaItemUrl} alt="">
+ <img class='featured-image' 
+    src={node.featuredImage?.node?.mediaItemUrl} 
+    srcset={node.featuredImage?.node?.srcSet} 
+    alt={node.featuredImage?.node?.altText}
+ >
  
  <article set:html={node.content}>
  </article>
