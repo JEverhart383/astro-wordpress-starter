@@ -8,6 +8,8 @@ import { homePagePostsQuery } from "../lib/api";
 const data = await homePagePostsQuery();
 const posts = data.posts.nodes;
 
+Astro.response.headers.set('Cache-Control','max-age=600, must-revalidate');
+
 ---
 
 <MainLayout title='Home Page'>
