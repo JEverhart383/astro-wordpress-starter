@@ -8,6 +8,7 @@
     "start": "node ./dist/server/entry.mjs",
     "build": "astro build",
     "preview": "astro preview",
+    "prepare": "cp .env.example .env.local",
     "astro": "astro"
   },
   "dependencies": {
