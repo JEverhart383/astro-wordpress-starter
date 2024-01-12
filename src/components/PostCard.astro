@@ -16,7 +16,7 @@ const { post } = Astro.props;
             >
             <div>
                 <p set:html={post.excerpt}></p> 
-                { post.categories.nodes.map(category => {
+                { post.categories && post.categories.nodes.map(category => {
                     return (<a class='term-link' href={category.uri}>{category.name}</a>)
                 })}
                 <span><time datetime={post.date}>{new Date(post.date).toLocaleDateString()}</time></span>

@@ -10,7 +10,7 @@ This project is meant to be a flexible starting point for people interested in u
 - [WPGraphQL](https://www.wpgraphql.com/docs/introduction)
 - Environment Variables
 
-Add a variable to your `.env` and then hit `npm run dev`:
+Add a variable to your `.env.local` and then hit `npm run dev`:
 
 `WORDPRESS_API_URL = https://yoursitename.com/graphql`
 
@@ -48,4 +48,36 @@ All of the current routes are being pre-rendered to HTML and served using the [s
 
 WP Engine's Atlas platform provides a performant and user-friendly hosting platform for headless WordPress and Node-based JavaScript apps. [Create a free sandbox account](https://wpengine.com/atlas/) to try the platform, and check out our Astro deployment guide for instruction to deploy to the platform.
 
+## Possible Errors
 
+Possible error when requesting Node by URI on Custom Post Types with WPML active
+
+### [WPML GraphQL - Fails to Fetch Single Custom Post Type by Slug Based](https://wpml.org/errata/wpml-graphql-fails-to-fetch-single-custom-post-type-by-slug-based/)
+
+
+When using GraphQL and utilizing a query similar to the following to retrieve Custom Post Types by slug, you will discover that it functions only for the posts in the default language:
+
+```graphql
+query getArticlesByslug {
+  article(id: "your-slug-goes-here", idType: SLUG) {
+    title
+    content
+  }
+}
+```
+
+Workaround
+
+**Please, make sure of having a full backup of your site before proceeding.** Open your theme’s functions.php file.
+Add this code:
+
+```php
+add_filter('request', function($vars){
+ 
+    if ( is_graphql_http_request() && !empty($vars['name']) ) {
+        $vars['suppress_filters'] = true;
+    }
+ 
+    return $vars;
+});
+```
